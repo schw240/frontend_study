@@ -9,14 +9,34 @@
 <body>
   <div class="login-form">
     <form>
-      <input type="text" name="email" class="text-field" placeholder="아이디">
-      <input type="password" name="password" class="text-field" placeholder="비밀번호">
-      <input type="submit" value="로그인" class="submit-btn">
+      <input type="text" name="email" id="email-input" class="text-field" placeholder="아이디"><br>
+      <input type="password" name="password" id="password-input" class="text-field" placeholder="비밀번호"><br>
+      <input type="submit" value="로그인" id="submit-btn">
     </form>
 
     <div class="links">
       <a href="#">비밀번호를 잊어버리셨나요?</a>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+    $('#email-input').on('input', checkInput);
+    $('#password-input').on('input', checkInput);
+
+    function checkInput() {
+      let email = $('#email-input').val();
+      let password = $('#password-input').val();
+
+      if (email === '' || password === '') {
+        // 비활성화
+        $('#submit-btn').css('background-color', '#9B9B9B');
+      } else {
+        // 활성화
+        $('#submit-btn').css('background-color', '#1BBC9B');
+      }
+    }
+  </script>
 </body>
 </html>
