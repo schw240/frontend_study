@@ -42,23 +42,22 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
     <script>
-      // 코드를 입력하세요!
       $('#calculate').on('click', calculateDate);
 
-function calculateDate() {
-  // Date 객체 만들기
-  var now = new Date();
-  var startDate = new Date($('#start').val());
+      function calculateDate() {
+        // Date 객체 만들기
+        var now = new Date();
+        var startDate = new Date($('#start').val());
 
-  // 날짜 차이 계산
-  var betweenDays = (now.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24;
+        // 날짜 차이 계산
+        var betweenDays = (now.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24;
 
-  // 계산한 날짜를 페이지에 표시
-  $('#day-count').text(Math.floor(betweenDays) + 1);
-  
-  if ($('#start').val() === '') {
-    alert('날짜를 입력해주세요');
-  }
+        // 계산한 날짜를 페이지에 표시
+        $('#day-count').text(Math.floor(betweenDays) + 1);
+        
+        if ($('#start').val() === '') {
+          alert('날짜를 입력해주세요');
+        }
 }
     </script>
   </body>
