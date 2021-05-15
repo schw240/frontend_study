@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.container {
+  width: 980px;
+  margin: auto;
+}
+
+.container-left {
+  padding: 20px 0;
+}
+
+.logo {
+  float: left;
+  margin-right: 5px;
+}
+/* logo란 class를 가진 요소를 찾아 그중 img를 가진 태그를 선택 */
+.logo img {
+  display: block;
+}
+
+.menu {
+  /* 수평이 됬으면 하는 요소에 float: left 추가 */
+  float: left;
+}
+
+.menu-item {
+  float: left;
+  /* margin-right: 10px; padding속성으로 인해 없어도됨*/
+  padding: 8px 10px;
+}
+/* ::는 가상요소 선택자 */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
