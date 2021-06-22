@@ -259,53 +259,53 @@
 
         // 클래스형
         // 클래스형은 this를 붙여주기
-        class Component extends React.Component {
-            // State값 항상 객체형식으로 사용
-            // state = {
-            //     count: 0,
-            // }
+        // class Component extends React.Component {
+        //     // State값 항상 객체형식으로 사용
+        //     // state = {
+        //     //     count: 0,
+        //     // }
 
-            // 상태값을 변경할 수 있는 다른 방식
-            constructor(props) {
-                // 리액트 컴포넌트의 생성자 함수를 상속
-                super(props);
-                this.state = { count: 0 };
-            }
+        //     // 상태값을 변경할 수 있는 다른 방식
+        //     constructor(props) {
+        //         // 리액트 컴포넌트의 생성자 함수를 상속
+        //         super(props);
+        //         this.state = { count: 0 };
+        //     }
 
-            render() {
-                return (
-                    <div>
-                        <h1>{this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.</h1>
-                        <p>{this.state.count}</p>
-                    </div>
-                )
-            }
+        //     render() {
+        //         return (
+        //             <div>
+        //                 <h1>{this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.</h1>
+        //                 <p>{this.state.count}</p>
+        //             </div>
+        //         )
+        //     }
 
 
-            // render가 끝난이후 state 변경 Lifecycle
-            componentDidMount() {
-                setTimeout(() => {
-                    // 아래와 같이 작성하면 될거같지만 안됨 렌더링 이후 상태값 변경할때 리액트는 밑에와 다른 방식 사용
-                    // this.state.count = this.state.count + 1;
+        //     // render가 끝난이후 state 변경 Lifecycle
+        //     componentDidMount() {
+        //         setTimeout(() => {
+        //             // 아래와 같이 작성하면 될거같지만 안됨 렌더링 이후 상태값 변경할때 리액트는 밑에와 다른 방식 사용
+        //             // this.state.count = this.state.count + 1;
                     
-                    // 리액트 방식1
-                    // this.setState({
-                    //     count: this.state.count + 1,
-                    // });
-                    // 리액트 방식 2
-                    // 앞에 값을 이용할 수 있다는 장점이 있다.
-                    this.setState((previousState) => {
-                        const newState = { count: previousState.count + 1 };
-                        return newState;
-                    })
-                }, 1000);
-            }
+        //             // 리액트 방식1
+        //             // this.setState({
+        //             //     count: this.state.count + 1,
+        //             // });
+        //             // 리액트 방식 2
+        //             // 앞에 값을 이용할 수 있다는 장점이 있다.
+        //             this.setState((previousState) => {
+        //                 const newState = { count: previousState.count + 1 };
+        //                 return newState;
+        //             })
+        //         }, 1000);
+        //     }
 
-            // 방법 2 클래스형만 사용 가능
-            static defaultProps = {
-                message: "기본값2"
-            }
-        }
+        //     // 방법 2 클래스형만 사용 가능
+        //     static defaultProps = {
+        //         message: "기본값2"
+        //     }
+        // }
 
 
         // 디폴트 메세지 기능 사용해보기 방법1 함수형도 사용 가능
@@ -313,12 +313,62 @@
         //     message: '기본값',
         // }
         
-        ReactDOM.render(
-            // <Component />,
-            <Component message="기본값 아닌 경우!!!" />,
-            document.querySelector("#root")
-        );
+        // ReactDOM.render(
+        //     // <Component />,
+        //     <Component message="기본값 아닌 경우!!!" />,
+        //     document.querySelector("#root")
+        // );
 
+
+        // Event Handling
+        // HTML DOM에 이벤트 발생시 그에 걸맞는 변경이 이루어나도록 해주기
+        // JSX에 이벤트 설정 가능
+        // Event Handling은 camelCase형식으로만 사용할 수 있음 ex) onClick, onMouseEnter
+        // 이벤트에 연결된 자바스크립트 코드는 함수임 이벤트={함수} 방식으로 사용
+        // 실제 DOM 요소들에게만 사용 가능
+        // 리액트 컴포넌트에 사용하면 그냥 porps로 전달함
+
+        // function Component() {
+            // return (
+            //     <div>
+            //         <button onClick={() => {
+            //             console.log("clicked");
+            //         }}
+            //         > 클릭 
+            //         </button>
+            //     </div>
+            // )
+        // }
+
+        class Component extends React.Component {
+            state = {
+                count: 0,
+            }
+            // constructor(props) {
+            //     super(props)
+            //     // bind를 해주어야 이벤트 핸들링 함수 바인딩
+            //     this.click = this.click.bind(this)
+            // }
+
+            render() {
+                return (
+                    <div>
+                        <p>{this.state.count}</p>
+                        <button onClick={this.click}>클릭</button>
+                    </div>
+                )
+            }
+            // 바인딩 방법2 화살표 함수로 만들기
+            click = () => {
+                console.log("clicked");
+                this.setState((state) => ({
+                    ...state,
+                    count: state.count + 1,
+                }));
+            }
+        }
+
+        ReactDOM.render(<Component />, document.querySelector("#root"))
     </script>   
 </body>
 </html>
